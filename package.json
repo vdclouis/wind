@@ -1,0 +1,28 @@
+{
+  "name": "wind",
+  "version": "0.3.0",
+  "license": "MIT",
+  "description": "waves",
+  "main": "index.js",
+  "dependencies": {
+    "chalk": "^1.1.0",
+    "moment": "^2.10.3",
+    "request": "^2.58.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/vdclouis/waves.git"
+  },
+  "keywords": [
+    "waves",
+    "node",
+    "surf",
+    "weather",
+    "report"
+  ],
+  "author": "vdclouis",
+  "homepage": "https://github.com/vdclouis/waves",
+  "scripts": {
+      "start": "node index.js"
+  }
+}
