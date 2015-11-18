@@ -7,7 +7,7 @@
   "dependencies": {
     "chalk": "^1.1.0",
     "moment": "^2.10.3",
-    "request": "^2.58.0"
+    "request": "^2.66.0"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,6 @@
   "author": "vdclouis",
   "homepage": "https://github.com/vdclouis/waves",
   "scripts": {
-      "start": "node index.js"
+    "start": "node index.js"
   }
 }
