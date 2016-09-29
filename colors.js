@@ -1,40 +1,50 @@
-var chalk   = require('chalk');
-var fn      = require('./functions.js');
+const chalk = require('chalk');
+const fn = require('./functions.js');
 
 // set colors based on air temperature
-exports.temp = function (x) {
+exports.temp = x => {
+    let color = '';
+
     if (x < 18) {
-        return chalk.blue(x + '\xB0C');
+        color = 'blue';
     }
     else {
-        return chalk.green(x + '\xB0C');
+        color = 'green';
     }
+
+    return chalk[color](`${x}\xB0C`);
 };
 
 // set colors based on wind speed
-exports.wind = function (x) {
-    var b = fn.beaufort(x);
-    var k = fn.knots(x);
+exports.wind = x => {
+    const b = fn.beaufort(x);
+    // const k = fn.knots(x);
+    let color = '';
 
     if (b < 3) {
-        return chalk.red(b + 'Bft ');
+        color = 'red';
     }
     else if (b > 7) {
-        return chalk.red(b + 'Bft ');
+        color = 'red';
     }
     else {
-        return chalk.green(b + 'Bft ');
+        color = 'green';
     }
+
+    return chalk[color](`${b}Bft`);
 };
 
 // set colors based on wind direction
-exports.compass = function (x) {
-    var goodWinds = ['SW', 'WSW', 'W', 'WNW', 'NW', 'NNW', 'N', 'NNE', 'NE'];
+exports.compass = x => {
+    const goodWinds = ['SW', 'WSW', 'W', 'WNW', 'NW', 'NNW', 'N', 'NNE', 'NE'];
+    let color = '';
 
     if (goodWinds.indexOf(x) > -1) {
-        return chalk.green(x);
+        color = 'green';
     }
     else {
-        return chalk.red(x);
+        color = 'red';
     }
+
+    return chalk[color](x);
 }

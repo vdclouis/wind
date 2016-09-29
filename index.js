@@ -1,12 +1,12 @@
-var http    = require('http');
-var request = require('request');
-var key     = require('./apikey.js');
-var colors  = require('./colors.js');
-var fn      = require('./functions.js');
+const http = require('http');
+const request = require('request');
+const key = require('./apikey.js');
+const colors = require('./colors.js');
+const fn = require('./functions.js');
 
-var spot    = '?spot_id=1114';  //b'berge
-var units   = '&units=eu';
-var url     = 'http://magicseaweed.com/api/' + key + '/forecast/' + spot + units;
+const spot = '?spot_id=1114';  //b'berge
+const units = '&units=eu';
+const url = `http://magicseaweed.com/api/${key}/forecast/${spot}${units}`;
 
 request({ url: url, json: true }, function (error, response, body) {
     if (error) {
@@ -15,19 +15,16 @@ request({ url: url, json: true }, function (error, response, body) {
       return;
     }
 
-    var now = Math.round(new Date().getTime() / 1000);
+    const now = Math.round(new Date().getTime() / 1000);
 
     body = body[fn.closest(body, now)];
 
-    var force     = body.wind.speed;
-    var direction = body.wind.compassDirection;
-    var temp      = body.condition.temperature;
-    var timestamp = body.localTimestamp;
+    const force = body.wind.speed;
+    const direction = body.wind.compassDirection;
+    const temp = body.condition.temperature;
+    const timestamp = body.localTimestamp;
 
-    var forecast =
-        colors.wind(force) + colors.compass(direction) +
-        ' | ' + colors.temp(temp) +
-        ' @ ' + fn.date(timestamp*1000);
+    const forecast = `${colors.wind(force)} ${colors.compass(direction)} | ${colors.temp(temp)} @ ${fn.date(timestamp * 1000)}`;
 
     console.log(forecast);
 });

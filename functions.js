@@ -1,25 +1,19 @@
 moment = require('moment');
 
 // km/h to beaufort
-exports.beaufort = function (x) {
-    return Math.round(Math.sqrt(2) * Math.sqrt(x + 11) - 4);
-};
+exports.beaufort = x => Math.round(Math.sqrt(2) * Math.sqrt(x + 11) - 4);
 
 // km/h to knots
-exports.knots = function (x) {
-    return Math.round(x / 1.852);
-};
+exports.knots = x => Math.round(x / 1.852);
 
-exports.date = function (x) {
-    return moment(x).format('hA');
-};
+exports.date = x => moment(x).format('hA');
 
-exports.closest = function (forecasts, closestTo) {
-    var closest = Math.max.apply(Math, forecasts.map(function (forecast) { return forecast.timestamp }));
-    var closestForecastIndex;
+exports.closest = (forecasts, closestTo) => {
+    let closest = Math.max(...forecasts.map(forecast => forecast.timestamp ));
+    let closestForecastIndex = null;
 
-    forecasts.forEach(function (forecast, index) {
-        if ( forecast.timestamp >= closestTo && forecast.timestamp < closest ) {
+    forecasts.forEach((forecast, index) => {
+        if (forecast.timestamp >= closestTo && forecast.timestamp < closest) {
             closest = forecast.timestamp;
             closestForecastIndex = index;
         }
